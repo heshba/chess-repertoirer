@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Simiyu Baraka Daniel — Complete Black Repertoire</title>
+
+  <!-- Libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{--bg:#f7f7fb;--card:#fff;--muted:#666}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:18px; background:var(--bg); color:#111}
+    header{display:flex;gap:14px;align-items:center}
+    h1{font-size:20px;margin:0}
+    .layout{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px}
+    #board { width: 480px; box-shadow:0 6px 18px rgba(12,12,30,0.06); border-radius:8px; background:linear-gradient(#fff,#fafafb) }
+    .side { max-width:680px; min-width:320px; }
+    .controls{background:var(--card); padding:12px; border-radius:10px; box-shadow:0 4px 12px rgba(12,12,30,0.04)}
+    .controls button{margin:6px 6px 6px 0;padding:8px 10px;border-radius:8px;border:none;background:#0b74ff;color:#fff;cursor:pointer}
+    .controls button.secondary{background:#444;color:#fff}
+    .annotation{margin-top:12px;background:var(--card);padding:12px;border-radius:10px;box-shadow:0 4px 12px rgba(12,12,30,0.04)}
+    pre.moves{background:#fff;padding:10px;border-radius:8px;max-height:240px;overflow:auto;margin-top:8px}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    @media (max-width:920px){ .layout{flex-direction:column} #board{width:100%} .side{width:100%} }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="width:56px;height:56px;border-radius:10px;background:#004d40;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">SB</div>
+    <div>
+      <h1>Simiyu Baraka Daniel — Black Repertoire</h1>
+      <div style="color:var(--muted);margin-top:4px">Caro–Kann vs 1.e4 | Modern Benoni vs 1.d4 | Hedgehog (reflector) vs 1.c4 — 25+ moves per line</div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div id="board"></div>
+
+    <div class="side">
+      <div class="controls">
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button id="loadCaro">Load — Caro–Kann (1...c6)</button>
+          <button id="loadBenoni">Load — Modern Benoni</button>
+          <button id="loadHedgehog">Load — Hedgehog (reflector)</button>
+          <button id="resetBtn" class="secondary">Reset</button>
+        </div>
+
+        <div style="margin-top:10px">
+          <button id="prevBtn" class="secondary">◀ Prev</button>
+          <button id="nextBtn">Next ▶</button>
+        </div>
+
+        <div style="margin-top:10px">
+          <button id="downloadBtn">Download current PGN</button>
+        </div>
+
+        <div style="margin-top:12px">
+          <label style="font-weight:600">Move list</label>
+          <pre id="moveList" class="moves">Load a line to show moves here.</pre>
+        </div>
+      </div>
+
+      <div class="annotation" id="annotation">
+        <h3 id="lineTitle">No line loaded</h3>
+        <div id="lineOverview" style="color:var(--muted)">Choose a line (Caro–Kann, Benoni or Hedgehog) to load a 25+ move model game with short move-comments and a paragraph overview.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Built for you — copy this file to <code>index.html</code> and host on GitHub Pages / Netlify. Pieces load from CDN.</footer>
+
+<script>
+/* ---------- repertoire PGNs (25+ moves) ----------
+   Each PGN contains short comments in {curly braces}.
+   These are study templates; comments are concise.
+--------------------------------------------------*/
+
+const repertoire = {
+  caro: {
+    title: "Caro–Kann: Classical / Main template",
+    pgn:
+`[Event "Repertoire - Caro-Kann"]
+1. e4 c6 {standard Caro–Kann start: solid and resilient.}
+2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 {develop bishop before ...e6.}
+5. Ng3 Bg6 6. h4 h6 {stop g5 ideas; typical prophylaxis.}
+7. Nf3 Nd7 8. h5 Bh7 9. Bd3 Bxd3 {trade when convenient.}
+10. Qxd3 e6 11. Bd2 Ngf6 12. O-O-O Be7 13. Kb1 O-O {king safety and typical setup.}
+14. Rhe1 c5 {strike in center; free the bishop.}
+15. Bc3 Qc7 16. d5 exd5 17. Rxe7 {tactical sacrifice — sample critical line.}
+18. Nf5 Rfe8 19. d6 Qc6 20. Ne7+ Rxe7 21. dxe7 Re8 22. Nd4 Qc7 23. Nf5 Nxh5 24. Nd6 Rb8 25. e8=Q+ Rxe8 26. Rxe8+ Nf8 27. Bb4 Nf6 28. Rxf8+ Kh7 29. Bc3 {Model tactical/design motifs; end of template.}`,
+    overview: "Caro–Kann classical template: solid development, timely ...c5 break and careful handling of White's kingside pushes (h4–h5). This model emphasizes piece coordination and tactical awareness after central exchanges."
+  },
+
+  benoni: {
+    title: "Modern Benoni: Classical Mainline template",
+    pgn:
+`[Event "Repertoire - Modern Benoni"]
+1. d4 Nf6 2. c4 c5 3. d5 e6 {Benoni thrust: accept space for play.}
+4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. f4 Bg7 8. Bb5+ Bd7 {check to provoke bishop/donate tempo.}
+9. Bd3 O-O 10. Nf3 Re8 11. O-O c4 {lock the center and advance on the queenside.}
+12. Bc2 b5 13. e5 Ng4 14. e6 fxe6 15. dxe6 Bxe6 {sharp tactical imbalance.}
+16. Ng5 Qb6+ 17. Kh1 Nf2+ 18. Rxf2 Qxf2 19. Bd2 Qb6 20. Re2 Bg4 21. Nd5 Qd8 22. Rxe8+ Qxe8 23. Qe1 Qd8 24. Bc3 Nc6 25. Bxg7 Kxg7 26. Qc3+ Nd4 27. Qxd4+ Qf6 {closing theme; model ends here.}`,
+    overview: "Modern Benoni template: allow White central space; counter with ...b5 and ...c4, aiming for queenside play and tactical counterblows. This sequence highlights timely pawn pushes and piece activity on the queenside."
+  },
+
+  hedgehog: {
+    title: "Hedgehog / Reflector vs English template",
+    pgn:
+`[Event "Repertoire - Hedgehog"]
+1. c4 c5 2. Nc3 Nf6 3. Nf3 e6 4. g3 b6 5. Bg2 Bb7 6. O-O Be7 7. d4 cxd4 8. Qxd4 d6
+9. e4 a6 10. Re1 Nbd7 11. b3 Qc7 12. Ba3 O-O 13. Rad1 Rfe8 14. Nd2 Rac8
+15. Nf1 b5 16. Ne3 Qb8 17. Bb2 Bf8 18. cxb5 axb5 19. Qb4 Bc6 20. a4 bxa4
+21. bxa4 d5 22. Qxb8 Rxb8 23. exd5 exd5 24. Bd4 Bxa4 25. Ra1 Bc6 26. a5 Ne4 27. Bxe4 dxe4 28. a6 Ba8 {reflector finish of template.}`,
+    overview: "Hedgehog / reflector: compact pawn shell (a6,b6,d6,e6). Patiently absorb White's pressure and counter with ...b5 / ...d5 breaks. This model shows the typical waiting strategy and the timing of counterstrikes."
+  }
+};
+
+/* ---------- UI & board initialization ---------- */
+let board = null;
+let game = new Chess();
+let currentMoves = [];
+let moveIndex = 0;
+let currentKey = null;
+
+// helpers
+function renderMoveList() {
+  if (!currentMoves.length) { $('#moveList').text('Load a line to show moves.'); return; }
+  // build numbered SAN list
+  let s = '';
+  for (let i = 0; i < currentMoves.length; i += 2) {
+    const mn = Math.floor(i/2)+1;
+    const w = currentMoves[i] || '';
+    const b = currentMoves[i+1] || '';
+    s += mn + '. ' + w + (b ? (' ' + b) : '') + '\\n';
+  }
+  $('#moveList').text(s);
+}
+
+function loadLine(key) {
+  const r = repertoire[key];
+  if (!r) return;
+  currentKey = key;
+  game.reset();
+  // chess.js can load PGN with comments
+  const ok = game.load_pgn(r.pgn);
+  // get SAN move list (comments are ignored in history)
+  currentMoves = game.history();
+  game.reset();
+  moveIndex = 0;
+  board.position(game.fen());
+  renderMoveList();
+  $('#lineTitle').text(r.title);
+  $('#lineOverview').html('<p style="margin:0;color:#333">' + r.overview + '</p>');
+}
+
+function playNext() {
+  if (moveIndex >= currentMoves.length) return;
+  const mv = currentMoves[moveIndex];
+  game.move(mv, { sloppy:true });
+  board.position(game.fen());
+  moveIndex++;
+  renderMoveListWithHighlight();
+}
+
+function playPrev() {
+  if (moveIndex <= 0) return;
+  game.undo();
+  moveIndex--;
+  board.position(game.fen());
+  renderMoveListWithHighlight();
+}
+
+function renderMoveListWithHighlight() {
+  // show move list and highlight current ply (simple: prepend '>>' to current move)
+  if (!currentMoves.length) { renderMoveList(); return; }
+  let s = '';
+  for (let i = 0; i < currentMoves.length; i += 2) {
+    const mn = Math.floor(i/2)+1;
+    const w = currentMoves[i] || '';
+    const b = currentMoves[i+1] || '';
+    const wMark = (i === moveIndex) ? '▶ ' : '';
+    const bMark = (i+1 === moveIndex) ? '▶ ' : '';
+    s += mn + '. ' + wMark + w + (b ? (' ' + bMark + b) : '') + '\\n';
+  }
+  $('#moveList').text(s);
+}
+
+/* ---------- events ---------- */
+$(function(){
+  board = Chessboard('board', {
+    draggable: false,
+    position: 'start',
+    pieceTheme: 'https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/img/chesspieces/wikipedia/{piece}.png'
+  });
+
+  // buttons
+  $('#loadCaro').click(()=>loadLine('caro'));
+  $('#loadBenoni').click(()=>loadLine('benoni'));
+  $('#loadHedgehog').click(()=>loadLine('hedgehog'));
+  $('#nextBtn').click(()=>{ playNext(); });
+  $('#prevBtn').click(()=>{ playPrev(); });
+  $('#resetBtn').click(()=>{ game.reset(); board.position(game.fen()); moveIndex=0; renderMoveListWithHighlight(); });
+  $('#downloadBtn').click(()=>{
+    if (!currentKey) { alert('Load a line first'); return; }
+    const blob = new Blob([repertoire[currentKey].pgn], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = (currentKey + '_repertoire.pgn'); document.body.appendChild(a); a.click(); a.remove();
+  });
+});
+</script>
+</body>
+</html>
